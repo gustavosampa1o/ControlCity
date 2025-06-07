@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ControlCity - Análises</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="analytics-page">
+    <nav class="navbar">
+        <div class="nav-brand">
+            <div class="logo-icon">🏙️</div>
+            <span>ControlCity</span>
+        </div>
+        <div class="nav-menu">
+            <a href="dashboard.html" class="nav-link">Dashboard</a>
+            <a href="cameras.html" class="nav-link">Câmeras</a>
+            <a href="analytics.html" class="nav-link active">Análises</a>
+            <button class="logout-btn" onclick="logout()">Sair</button>
+        </div>
+    </nav>
+
+    <div class="analytics-container">
+        <div class="analytics-header">
+            <h1>Análises e Relatórios</h1>
+            <div class="date-range">
+                <select id="timeRange">
+                    <option value="7d">Últimos 7 dias</option>
+                    <option value="30d" selected>Últimos 30 dias</option>
+                    <option value="90d">Últimos 3 meses</option>
+                    <option value="1y">Último ano</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="analytics-grid">
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3>Incidentes por Tipo</h3>
+                    <span class="chart-period">Mensal - 2024</span>
+                </div>
+                <canvas id="incidentsChart"></canvas>
+            </div>
+
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3>Tempo de Resposta</h3>
+                    <span class="chart-period">Média mensal</span>
+                </div>
+                <canvas id="responseTimeChart"></canvas>
+            </div>
+
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3>Alertas de Enchente</h3>
+                    <span class="chart-period">Por região</span>
+                </div>
+                <canvas id="floodAlertsChart"></canvas>
+            </div>
+
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3>Eficiência do Sistema</h3>
+                    <span class="chart-period">Histórico 2024</span>
+                </div>
+                <canvas id="efficiencyChart"></canvas>
+            </div>
+        </div>
+
+        <div class="insights-section">
+            <h2>Insights e Recomendações</h2>
+            <div class="insights-grid">
+                <div class="insight-card">
+                    <div class="insight-icon">📊</div>
+                    <div class="insight-content">
+                        <h4>Redução de 35% no Tempo de Resposta</h4>
+                        <p>A implementação do sistema ControlCity resultou em uma melhoria significativa na resposta a emergências, com redução média de 35% no tempo de mobilização das equipes.</p>
+                    </div>
+                </div>
+                <div class="insight-card">
+                    <div class="insight-icon">🌊</div>
+                    <div class="insight-content">
+                        <h4>Prevenção de 12 Enchentes Críticas</h4>
+                        <p>Os alertas antecipados permitiram evacuações preventivas e medidas de contenção, evitando danos materiais estimados em R$ 2,3 milhões.</p>
+                    </div>
+                </div>
+                <div class="insight-card">
+                    <div class="insight-icon">🚗</div>
+                    <div class="insight-content">
+                        <h4>Melhoria de 28% no Fluxo de Trânsito</h4>
+                        <p>A integração com aplicativos de GPS e alertas em tempo real reduziu congestionamentos e otimizou rotas alternativas durante emergências.</p>
+                    </div>
+                </div>
+                <div class="insight-card">
+                    <div class="insight-icon">🎯</div>
+                    <div class="insight-content">
+                        <h4>Precisão de 94% nas Previsões IA</h4>
+                        <p>Os algoritmos de machine learning atingiram alta precisão na detecção e previsão de incidentes, minimizando falsos positivos.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="auth.js"></script>
+    <script src="analytics.js"></script>
+</body>
+</html>

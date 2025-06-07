@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ControlCity - Câmeras</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="cameras-page">
+    <nav class="navbar">
+        <div class="nav-brand">
+            <div class="logo-icon">🏙️</div>
+            <span>ControlCity</span>
+        </div>
+        <div class="nav-menu">
+            <a href="dashboard.html" class="nav-link">Dashboard</a>
+            <a href="cameras.html" class="nav-link active">Câmeras</a>
+            <a href="analytics.html" class="nav-link">Análises</a>
+            <button class="logout-btn" onclick="logout()">Sair</button>
+        </div>
+    </nav>
+
+    <div class="cameras-container">
+        <div class="cameras-header">
+            <h1>Sistema de Monitoramento por Câmeras</h1>
+            <div class="camera-stats">
+                <span class="stat">📹 24 Câmeras Ativas</span>
+                <span class="stat">⚠️ 3 Alertas Detectados</span>
+            </div>
+        </div>
+
+        <div class="camera-filters">
+            <button class="filter-btn active" data-filter="all">Todas</button>
+            <button class="filter-btn" data-filter="flood">Risco de Enchente</button>
+            <button class="filter-btn" data-filter="traffic">Trânsito</button>
+            <button class="filter-btn" data-filter="emergency">Emergência</button>
+        </div>
+
+        <div class="cameras-grid" id="camerasGrid">
+            <!-- Cameras will be populated by JavaScript -->
+        </div>
+
+        <div class="camera-modal" id="cameraModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 id="modalTitle">Câmera Detalhada</h3>
+                    <button class="close-btn" onclick="closeCameraModal()">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="camera-feed-large">
+                        <img id="modalCameraImage" src="" alt="Feed da câmera">
+                        <div class="camera-overlay">
+                            <div class="detection-box" style="top: 30%; left: 20%; width: 60%; height: 40%;">
+                                <span class="detection-label">Nível de Água Elevado</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="camera-details">
+                        <div class="detail-item">
+                            <strong>Localização:</strong>
+                            <span id="modalLocation">-</span>
+                        </div>
+                        <div class="detail-item">
+                            <strong>Status:</strong>
+                            <span id="modalStatus" class="status-badge">-</span>
+                        </div>
+                        <div class="detail-item">
+                            <strong>Última Atualização:</strong>
+                            <span id="modalLastUpdate">-</span>
+                        </div>
+                        <div class="detail-item">
+                            <strong>Detecções IA:</strong>
+                            <div id="modalDetections" class="detections-list">
+                                <!-- AI detections will be populated -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="auth.js"></script>
+    <script src="cameras.js"></script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ControlCity - Dashboard</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="dashboard-page">
+    <nav class="navbar">
+        <div class="nav-brand">
+            <div class="logo-icon">🏙️</div>
+            <span>ControlCity</span>
+        </div>
+        <div class="nav-menu">
+            <a href="dashboard.html" class="nav-link active">Dashboard</a>
+            <a href="cameras.html" class="nav-link">Câmeras</a>
+            <a href="analytics.html" class="nav-link">Análises</a>
+            <button class="logout-btn" onclick="logout()">Sair</button>
+        </div>
+    </nav>
+
+    <div class="dashboard-container">
+        <div class="dashboard-header">
+            <h1>Centro de Controle de Emergências</h1>
+            <div class="status-indicator">
+                <span class="status-dot active"></span>
+                <span>Sistema Operacional</span>
+            </div>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon">🚨</div>
+                <div class="stat-content">
+                    <h3>Emergências Ativas</h3>
+                    <div class="stat-number">7</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">🌊</div>
+                <div class="stat-content">
+                    <h3>Alertas de Enchente</h3>
+                    <div class="stat-number">3</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">🚗</div>
+                <div class="stat-content">
+                    <h3>Acidentes de Trânsito</h3>
+                    <div class="stat-number">12</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">⚡</div>
+                <div class="stat-content">
+                    <h3>Falhas de Energia</h3>
+                    <div class="stat-number">2</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="map-section">
+                <div class="section-header">
+                    <h2>Mapa de Incidentes em Tempo Real</h2>
+                    <div class="map-controls">
+                        <button class="filter-btn active" data-filter="all">Todos</button>
+                        <button class="filter-btn" data-filter="flood">Enchentes</button>
+                        <button class="filter-btn" data-filter="accident">Acidentes</button>
+                        <button class="filter-btn" data-filter="power">Energia</button>
+                    </div>
+                </div>
+                <div id="map" class="map-container"></div>
+            </div>
+
+            <div class="incidents-section">
+                <div class="section-header">
+                    <h2>Incidentes Recentes</h2>
+                    <button class="refresh-btn">🔄 Atualizar</button>
+                </div>
+                <div class="incidents-list" id="incidentsList">
+                    <!-- Incidents will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="auth.js"></script>
+    <script src="dashboard.js"></script>
+</body>
+</html>
