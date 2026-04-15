@@ -13,7 +13,7 @@ test('login válido', () => {
     expect(result.sucesso).toBe(true);
 });
 
-//login falhagit
+//login falha
 test('login inválido', () => {
     const result = autenticar(
         'admin@controlcity.COM',
