@@ -27,6 +27,7 @@ jobs:
   build-and-push:
     needs: test
     runs-on: ubuntu-latest
+    environment: production
 
     steps:
       - name: Checkout
@@ -48,9 +49,10 @@ jobs:
   deploy:
     needs: build-and-push
     runs-on: ubuntu-latest
+    environment: production
 
     steps:
-      - name: Restart Azure Web App (force pull latest image)
+      - name: Restart Azure Web App
         run: |
           curl -X POST \
           -u "${{ secrets.AZURE_PUBLISH_PROFILE_USER }}:${{ secrets.AZURE_PUBLISH_PROFILE_PASSWORD }}" \
