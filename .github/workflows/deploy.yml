@@ -1,0 +1,54 @@
+name: CI/CD
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Testes com Docker Compose
+        run: docker compose up --build --abort-on-container-exit
+
+      - name: Cleanup
+        if: always()
+        run: docker compose down
+
+
+  build-and-push:
+    needs: test
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Login Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build image
+        run: docker build -t seuuser/seuapp:latest .
+
+      - name: Push image
+        run: docker push seuuser/seuapp:latest
+
+
+  deploy:
+    needs: build-and-push
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Login Azure
+        uses: azure/login@v2
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Restart Web App (force pull new image)
+        run: az webapp restart \
+          --name SEU_WEBAPP_NAME \
+          --resource-group SEU_RESOURCE_GROUP
