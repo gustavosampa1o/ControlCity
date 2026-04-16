@@ -56,4 +56,4 @@ jobs:
         run: |
           curl -X POST \
           -u "${{ secrets.AZURE_PUBLISH_PROFILE_USER }}:${{ secrets.AZURE_PUBLISH_PROFILE_PASSWORD }}" \
-          https://controlcity.scm.azurewebsites.net/api/restart
+          https://controlcity-a3cbamb4h9akgqge.scm.brazilsouth-01.azurewebsites.net/api/restart
