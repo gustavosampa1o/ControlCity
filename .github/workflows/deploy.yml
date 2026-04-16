@@ -40,12 +40,11 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Build image
-        run: docker build -t gustavosampa1o/controlcity:latest .
+        run: docker build -t gustavosampa1o/controlcity:latest ${{ github.sha }}.
 
       - name: Push image
-        run: docker push gustavosampa1o/controlcity:latest
-
-
+        run: docker push gustavosampa1o/controlcity:latest ${{ github.sha }}
+        
   deploy:
     needs: build-and-push
     runs-on: ubuntu-latest
