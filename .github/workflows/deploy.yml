@@ -11,12 +11,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Testes com Docker Compose
-        run: docker compose up --build --abort-on-container-exit
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
 
-      - name: Cleanup
-        if: always()
-        run: docker compose down
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run Jest tests
+        run: npm test
 
 
   build-and-push:
@@ -37,3 +41,15 @@ jobs:
 
       - name: Push image
         run: docker push seuuser/seuapp:latest
+
+
+  deploy:
+    needs: build-and-push
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Restart Azure Web App
+        run: |
+          curl -X POST \
+          -u "${{ secrets.AZURE_PUBLISH_PROFILE_USER }}:${{ secrets.AZURE_PUBLISH_PROFILE_PASSWORD }}" \
+          https://SEU_APP.scm.azurewebsites.net/api/restart
