@@ -40,10 +40,10 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Build image
-        run: docker build -t seuuser/seuapp:latest .
+        run: docker build -t gustavosampa1o/controlcity:latest .
 
       - name: Push image
-        run: docker push seuuser/seuapp:latest
+        run: docker push gustavosampa1o/controlcity:latest
 
 
   deploy:
