@@ -7,6 +7,7 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v4
 
@@ -36,19 +37,3 @@ jobs:
 
       - name: Push image
         run: docker push seuuser/seuapp:latest
-
-
-  deploy:
-    needs: build-and-push
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Login Azure
-        uses: azure/login@v2
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
-
-      - name: Restart Web App (force pull new image)
-        run: az webapp restart \
-          --name SEU_WEBAPP_NAME \
-          --resource-group SEU_RESOURCE_GROUP
