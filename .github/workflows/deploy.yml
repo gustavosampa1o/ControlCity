@@ -40,10 +40,10 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Build image
-        run: docker build -t gustavosampa1o/controlcity:latest ${{ github.sha }}.
+        run: docker build -t gustavosampa1o/controlcity:${{ github.sha }}.
 
       - name: Push image
-        run: docker push gustavosampa1o/controlcity:latest ${{ github.sha }}
+        run: docker push gustavosampa1o/controlcity:${{ github.sha }}
         
   deploy:
     needs: build-and-push
