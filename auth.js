@@ -1,16 +1,11 @@
-function autenticar(email, password, userType) {
-    if (email === 'admin@controlcity.com' && password === 'demo123') {
-        return {
-            sucesso: true,
-            user: {
-                email,
-                userType,
-                loginTime: new Date().toISOString()
-            }
-        };
-    }
+async function autenticar(email, password) {
+    const response = await fetch('http://localhost:3000/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
+    });
 
-    return { sucesso: false };
+    return response.json();
 }
 
 // só roda no navegador
@@ -20,14 +15,13 @@ if (typeof document !== 'undefined') {
 
         if (!loginForm) return;
 
-        loginForm.addEventListener('submit', function (e) {
+        loginForm.addEventListener('submit', async function (e) {
             e.preventDefault();
 
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
-            const userType = document.getElementById('userType').value;
 
-            const result = autenticar(email, password, userType);
+            const result = await autenticar(email, password);
 
             if (result.sucesso) {
                 localStorage.setItem('user', JSON.stringify(result.user));
@@ -39,4 +33,4 @@ if (typeof document !== 'undefined') {
     });
 }
 
-module.exports = { autenticar };
+export { autenticar };
