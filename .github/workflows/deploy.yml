@@ -45,17 +45,17 @@ jobs:
 
   # Needs web app created in azure
 
-  # deploy-staging:
-  #   needs: build-and-push
-  #   runs-on: ubuntu-latest
-  #   environment: staging
+  deploy-staging:
+    needs: build-and-push
+    runs-on: ubuntu-latest
+    environment: staging
 
-  #   steps:
-  #     - name: Restart Azure Web App (staging)
-  #       run: |
-  #         curl -X POST \
-  #         -u "${{ secrets.AZURE_PUBLISH_PROFILE_USER }}:${{ secrets.AZURE_PUBLISH_PROFILE_PASSWORD }}" \
-  #         url
+    steps:
+      - name: Restart Azure Web App (staging)
+        run: |
+          curl -X POST \
+          -u "${{ secrets.AZURE_PUBLISH_PROFILE_USER }}:${{ secrets.AZURE_PUBLISH_PROFILE_PASSWORD }}" \
+          url
 
   deploy-production:
     needs: deploy-staging
