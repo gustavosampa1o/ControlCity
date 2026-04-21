@@ -1,25 +1,16 @@
-
-//login sucesso
-
-const { autenticar } = require('../auth');
+const { buildLoginResponse } = require('../server.cjs');
 
 test('login válido', () => {
-    const result = autenticar(
-        'admin@controlcity.com',
-        'demo123',
-        'admin'
-    );
+    const rows = [{ role: 'admin' }];
+    const result = buildLoginResponse(rows, 'admin@controlcity.com');
 
     expect(result.sucesso).toBe(true);
+    expect(result.user.email).toBe('admin@controlcity.com');
+    expect(result.user.userType).toBe('admin');
 });
 
-//login falha
 test('login inválido', () => {
-    const result = autenticar(
-        'admin@controlcity.COM',
-        'demo1234',
-        'admin'
-    );
+    const result = buildLoginResponse([], 'wrong@email.com');
 
     expect(result.sucesso).toBe(false);
 });

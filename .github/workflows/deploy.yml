@@ -23,11 +23,9 @@ jobs:
       - name: Run Jest tests
         run: npm test
 
-
   build-and-push:
     needs: test
     runs-on: ubuntu-latest
-    environment: production
 
     steps:
       - name: Checkout
@@ -44,14 +42,28 @@ jobs:
 
       - name: Push image
         run: docker push gustavosampa1o/controlcity:${{ github.sha }}
-        
-  deploy:
-    needs: build-and-push
+
+  # Needs web app created in azure
+
+  # deploy-staging:
+  #   needs: build-and-push
+  #   runs-on: ubuntu-latest
+  #   environment: staging
+
+  #   steps:
+  #     - name: Restart Azure Web App (staging)
+  #       run: |
+  #         curl -X POST \
+  #         -u "${{ secrets.AZURE_PUBLISH_PROFILE_USER }}:${{ secrets.AZURE_PUBLISH_PROFILE_PASSWORD }}" \
+  #         url
+
+  deploy-production:
+    needs: deploy-staging
     runs-on: ubuntu-latest
     environment: production
 
     steps:
-      - name: Restart Azure Web App
+      - name: Restart Azure Web App (production)
         run: |
           curl -X POST \
           -u "${{ secrets.AZURE_PUBLISH_PROFILE_USER }}:${{ secrets.AZURE_PUBLISH_PROFILE_PASSWORD }}" \
