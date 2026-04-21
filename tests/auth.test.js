@@ -1,3 +1,7 @@
+/**
+ * @jest-environment node
+ */
+
 const { buildLoginResponse } = require('../server.cjs');
 
 test('login válido', () => {

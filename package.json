@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "test": "jest"
+    "test": "jest --env=jsdom"
   },
   "dependencies": {
     "chart.js": "^4.4.0",
@@ -27,7 +27,6 @@
   "license": "ISC",
   "description": "",
   "jest": {
-    "testEnvironment": "node",
     "transformIgnorePatterns": []
   }
 }
