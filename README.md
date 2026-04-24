@@ -2,6 +2,8 @@
 
 Plataforma Inteligente de Prevenção e Resposta a Emergências Urbanas. Centraliza monitoramento de incidentes em tempo real (enchentes, acidentes de trânsito, falhas de energia) com mapa interativo, sistema de câmeras com detecção por IA e relatórios analíticos.
 
+Link da aplicação: https://controlcity-a3cbamb4h9akgqge.brazilsouth-01.azurewebsites.net/
+
 ---
 
 ## Como executar localmente com Docker
